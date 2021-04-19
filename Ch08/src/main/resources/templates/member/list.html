@@ -18,12 +18,12 @@
 			<th>Manage</th>
 		</tr>
 		<tr th:each="member:${members}">
-			<td>${member.uid}</td>
-			<td>${member.name}</td>
-			<td>${member.hp}</td>
-			<td>${member.pos}</td>
-			<td>${member.dep}</td>
-			<td>${member.rdate}</td>
+			<td th:text=${member.uid}></td>
+			<td th:text=${member.name}></td>
+			<td th:text=${member.hp}></td>
+			<td th:text=${member.pos}></td>
+			<td th:text=${member.dep}></td>
+			<td th:text=${member.rdate}></td>
 			<td>
 				<a th:href="@{/member/modify(uid=${member.uid})}">Edit</a>
 				<a th:href="@{/member/delete(uid=${member.uid})}">Delete</a>
