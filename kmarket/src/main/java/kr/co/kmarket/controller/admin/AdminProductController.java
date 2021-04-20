@@ -2,14 +2,18 @@ package kr.co.kmarket.controller.admin;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.kmarket.service.admin.AdminProductService;
 import kr.co.kmarket.vo.Cate1Vo;
 import kr.co.kmarket.vo.Cate2Vo;
+import kr.co.kmarket.vo.ProductVo;
 
 @Controller
 public class AdminProductController {
@@ -38,5 +42,15 @@ public class AdminProductController {
 	@GetMapping("/admin/product/register")
 	public String register() {
 		return "/admin/product/register";
+	}
+	
+	@PostMapping("/admin/product/register")
+	public String register(ProductVo vo, HttpServletRequest req) {
+		//ip
+		String ip = req.getRemoteAddr();
+		vo.setIp(ip);
+		
+		service.insertProduct(service.uploadThumb(vo));
+		return "redirect:/admin/product/register";
 	}
 }
