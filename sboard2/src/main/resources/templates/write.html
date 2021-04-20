@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Write</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <div id="wrapper">
+        <section id="board" class="write">
+            <h3>Post</h3>
+            <article>
+                <form action="#">
+					<table>
+                        <tr>
+                            <td>Title</td>
+                            <td><input type="text" name="title" placeholder="Enter the title"/></td>
+                        </tr>
+                        <tr>
+                            <td>Content</td>
+                            <td>
+                                <textarea name="content"></textarea>                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Attach</td>
+                            <td><input type="file" name="fname"/></td>
+                        </tr>
+                    </table>
+                    <div>
+                        <a href="./list.html" class="btnCancel">Cancel</a>
+                        <input type="submit"  class="btnWrite" value="Submit">
+                    </div>
+                </form>
+            </article>
+        </section>
+    </div>
+</body>
+</html>
