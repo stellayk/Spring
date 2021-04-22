@@ -6,8 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.gson.JsonObject;
 
 import kr.co.kmarket.service.ShopService;
+import kr.co.kmarket.vo.CartVo;
 import kr.co.kmarket.vo.ProductVo;
 
 @Controller
@@ -42,6 +47,15 @@ public class ShopController {
 	@GetMapping("/shop/cart")
 	public String cart() {
 		return "/shop/cart";
+	}
+	
+	@ResponseBody
+	@PostMapping("/shop/cart")
+	public String cart(CartVo vo) {
+		int result = service.insertCart(vo);
+		JsonObject json = new JsonObject();
+		json.addProperty("result", result);
+		return json.toString();
 	}
 	
 	@GetMapping("/shop/order")
