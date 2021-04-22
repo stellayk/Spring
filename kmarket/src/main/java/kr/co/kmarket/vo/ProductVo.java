@@ -48,4 +48,6 @@ public class ProductVo {
 	private MultipartFile file4;
 	
 	private int salePrice;
+	private String tit1;
+	private String tit2;
 }
