@@ -1,5 +1,10 @@
 package kr.co.kmarket.dao;
 
-public class MemberDao {
+import org.springframework.stereotype.Repository;
 
+import kr.co.kmarket.vo.MemberVo;
+
+@Repository
+public interface MemberDao {
+	public MemberVo selectMember(MemberVo vo);
 }

@@ -27,6 +27,6 @@ public class ShopService {
 	}
 	
 	public int insertCart (CartVo vo) {
-		dao.insertCart(vo);
+		return dao.insertCart(vo);
 	}
 }

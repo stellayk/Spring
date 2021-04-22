@@ -8,6 +8,7 @@
 			var product = [[${productVo}]];
 			var count = 1;
 			var total = (product.price*count)*(1-product.discount/100);
+			
 			var jsonData = {
 					'code': product.code,
 					'name': product.name,
@@ -19,7 +20,7 @@
 					'total': total
 			};
 			
-			console.log(jsonData);
+			//console.log(jsonData);
 			
 			$.ajax({
 				url: '/kmarket/shop/cart',
@@ -27,12 +28,21 @@
 				data: jsonData,
 				dataType: 'json',
 				success: function(result){
-					
+					if(data.result == 1){
+						var result = confirm('장바구니 추가 완료 했습니다.\n장바구니로 이동하시겠습니까?');
+						if(result){
+							location.href = '/kmarket/shop/cart';
+						}
+					}else{
+						alert('장바구니 실패');
+					}
 				}
 			});
 		});
+		
+		//order
 		$('input.order').click(function(){
-			
+			alert('주문하기 클릭');
 		});
 	});
 </script>

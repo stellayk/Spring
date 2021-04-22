@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import kr.co.kmarket.service.ShopService;
@@ -55,7 +56,7 @@ public class ShopController {
 		int result = service.insertCart(vo);
 		JsonObject json = new JsonObject();
 		json.addProperty("result", result);
-		return json.toString();
+		return new Gson().toJson(json);
 	}
 	
 	@GetMapping("/shop/order")
