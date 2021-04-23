@@ -19,7 +19,6 @@
 					'delivery': product.delivery,
 					'total': total
 			};
-			
 			//console.log(jsonData);
 			
 			$.ajax({
@@ -27,7 +26,7 @@
 				type: 'post',
 				data: jsonData,
 				dataType: 'json',
-				success: function(result){
+				success: function(data){
 					if(data.result == 1){
 						var result = confirm('장바구니 추가 완료 했습니다.\n장바구니로 이동하시겠습니까?');
 						if(result){
@@ -70,7 +69,11 @@
                     </nav>
                     <p>[[${productVo.descript}]]</p>
                     <nav>
-                        <h5 class="rating star4"><a href="#">상품평보기</a></h5>
+                        <h5 th:if="${productVo.score == 1}" class="rating star1"><a href="#">상품평보기</a></h5>
+                        <h5 th:if="${productVo.score == 2}" class="rating star2"><a href="#">상품평보기</a></h5>
+                        <h5 th:if="${productVo.score == 3}" class="rating star3"><a href="#">상품평보기</a></h5>
+                        <h5 th:if="${productVo.score == 4}" class="rating star4"><a href="#">상품평보기</a></h5>
+                        <h5 th:if="${productVo.score == 5}" class="rating star5"><a href="#">상품평보기</a></h5>
                     </nav>
                     <nav>
                         <div class="org_price">
@@ -82,7 +85,8 @@
                         </div>
                     </nav>
                     <nav>
-                        <span class="delivery">무료배송</span>
+                        <span th:if="${productVo.delivery == 0}" class="delivery">무료배송</span>
+                      	<span th:if="${productVo.delivery > 0}" class="delivery">배송비 [[${#numbers.formatInteger(productVo.delivery, 3, 'COMMA')}]]원</span>
                         <span class="arrival">모레(금) 7/8 도착예정</span>
                         <span class="desc">본 상품은 국내배송만 가능합니다.</span>
                     </nav>

@@ -62,9 +62,15 @@ public class ShopController {
 		
 		if(member != null) {
 			vo.setUid(member.getUid());
-			result = service.insertCart(vo);
-		}else {
-			result = 2;
+			int count = service.selectCountCart(vo);
+			
+			if(count == 0) { //add to cart
+				result = service.insertCart(vo);
+			} else { //item already in the cart
+				result = 3;
+			}
+		}else { //not logged in
+			result=2;
 		}
 		JsonObject json = new JsonObject();
 		json.addProperty("result", result);
