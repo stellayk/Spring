@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>List</title>
+</head>
+<body>
+	<h3>Employees List</h3>
+	<table border="1">
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Phone</th>
+			<th>Position</th>
+			<th>Department</th>
+			<th>Start Date</th>
+			<th>Manage</th>
+		</tr>
+		<tr th:each="member:${members}">
+			<td th:text=${member.uid}></td>
+			<td th:text=${member.name}></td>
+			<td th:text=${member.hp}></td>
+			<td th:text=${member.pos}></td>
+			<td th:text=${member.dep}></td>
+			<td th:text=${member.rdate}></td>
+			<td>
+				<a th:href="@{/modify(uid=${member.uid})}">Edit</a>
+				<a th:href="@{/delete(uid=${member.uid})}">Delete</a>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
+
+
