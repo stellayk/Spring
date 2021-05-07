@@ -42,47 +42,43 @@
 					var price = $(this).prev().text().replace(/,/g, '');
 					totDiscount += parseInt(price*discount/100);
 				}
-				$('.info tr:nth-child(3) > td:nth-child(2)').text(totPrice.toLocaleString());
 			});
+			
+			$('.info tr:nth-child(3) > td:nth-child(2)').text(totPrice.toLocaleString());
 			
 			//delivery fee
 			var tagDelivery = checkedProduct.find('.delivery');
 			var totDelivery = 0;
 
 			$.each(tagDelivery, function(){
-
 				var delivery = $(this).text().replace(/,/g, '');
 
 				if(delivery != '무료배송'){				
 					totDelivery += parseInt(delivery);
 				}			
-
-				$('.info tr:nth-child(4) > td:nth-child(2)').text(totDelivery.toLocaleString());
 			});
+			
+			$('.info tr:nth-child(4) > td:nth-child(2)').text(totDelivery.toLocaleString());
 			
 			//point
 			var tagPoint = checkedProduct.find('.point');
 			var totPoint = 0;
 
 			$.each(tagPoint, function(){
-
 				var point = $(this).text().replace(/,/g, '');							
 				totPoint += parseInt(point);					
-
-				$('.info tr:nth-child(5) > td:nth-child(2)').text(totPoint.toLocaleString());
 			});
+			$('.info tr:nth-child(5) > td:nth-child(2)').text(totPoint.toLocaleString());
 			
 			//total sum
 			var tagTotal = checkedProduct.find('.total');
 			var totTotal = 0;
 
 			$.each(tagTotal, function(){
-
 				var total = $(this).text().replace(/,/g, '');							
 				totTotal += parseInt(total);					
-
-				$('.info tr:nth-child(6) > td:nth-child(2)').text(totTotal.toLocaleString());
 			});
+			$('.info tr:nth-child(6) > td:nth-child(2)').text(totTotal.toLocaleString());
 		});
 	} // aggregateProduct() end
 	
@@ -100,18 +96,18 @@
 				productCheck.prop('checked', false)
 				
 				//reset numbers
-				aggregateProcut();
+				aggregateProduct();
 			}else{
 				//all checked
 				productCheck.attr('checked', true)
 				//calculate numbers
-				aggregateProcut();
+				aggregateProduct();
 			}
 		}); 
 		
 		//changing checkbox for each item
 		checkProducts.change(function() {
-			aggregateProcut();
+			aggregateProduct();
 		});
 	});
 </script>
