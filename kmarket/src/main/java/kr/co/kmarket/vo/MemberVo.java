@@ -34,4 +34,7 @@ public class MemberVo {
 	private String etc3;
 	private String etc4;
 	private String etc5;
+	
+	//additional field
+	private String result;
 }

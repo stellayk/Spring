@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:include="@{member/_header_member.html}"/>
+<script th:inline="javascript">
+	var result="[[${result}]]";
+	
+	if(result==0) {
+		alert('Login failed. \nCheck your id and password again.')
+	} else if(result==1) {
+		alert('You need to login first to check out.')
+	}
+</script>
 <main>
     <div id="member-login">
         <img src="../img/member_txt_login.gif" alt="로그인" />
 		<form th:action="@{/member/login}" method="post">
+			<input type="hidden" name="result" th:value="${result}" />
 			<div>
 				<label>
 					<span><img src="../img/member_txt_id.gif" alt="아이디"></span> 

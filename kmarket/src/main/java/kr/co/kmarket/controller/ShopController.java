@@ -49,8 +49,20 @@ public class ShopController {
 	}
 	
 	@GetMapping("/shop/cart")
-	public String cart() {
-		return "/shop/cart";
+	public String cart(HttpSession sess, Model model) {
+		MemberVo member = (MemberVo) sess.getAttribute("smember");
+		
+		if(member!=null) {
+			//logged in 
+			String uid = member.getUid();
+			
+			List<CartVo> products = service.selectCart(uid);
+			model.addAttribute("products", products);
+			
+			return "/shop/cart";
+		} else {
+			return "redirect:/member/login?result=1";
+		}
 	}
 	
 	@ResponseBody

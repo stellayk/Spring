@@ -32,6 +32,14 @@
 		WHERE `code`=#{code};  
 	</select>
 	
+	<select id="selectCart" resultType="kr.co.kmarket.vo.CartVo">
+		SELECT a.*, b.cate1, b.cate2, b.thumb1 FROM `km_product_cart` AS a
+		JOIN `km_product` AS b
+		ON a.code=b.code
+		WHERE `uid`=#{uid}
+		ORDER BY `seq` DESC; 
+	</select>
+	
 	<insert id="insertCart">
 		INSERT INTO `km_product_cart` SET
 			`uid`= #{uid},

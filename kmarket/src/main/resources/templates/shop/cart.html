@@ -1,6 +1,116 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:include="@{_header.html}"/>
+<script>
+	//total sum
+	$(function() {
+		//count item
+		var tagCount = $('td.count');
+		var totCount = 0;
+		
+		$.each(tagCount, function() {
+			var count = parseInt($(this).text());
+			totCount += count;
+		});
+		
+		$('.info tr:nth-child(1) > td:nth-child(2)').text(totCount);
+		
+		//price
+		var tagPrice = $('td.price');
+		var totPrice = 0;
+		
+		$.each(tagPrice, function() {
+			var price = parseInt($(this).text().replace(/,/g, ''));
+			totPrice += price;
+		});
+		
+		$('.info tr:nth-child(2) > td:nth-child(2)').text(totPrice.toLocaleString());
+		
+		//discounted price
+		var tagDiscount = $('td.discount');
+		var totDiscount = 0;
+		
+		$.each(tagDiscount, function() {
+			var discount = $(this).text().replace(/%/g, '');
+			
+			if(discount != '-') {
+				var price = $(this).prev().text().replace(/,/g, '');
+				totDiscount += parseInt(price*discount/100);
+			}
+			$('.info tr:nth-child(3) > td:nth-child(2)').text(totPrice.toLocaleString());
+		});
+		
+		//delivery fee
+		var tagDelivery = $('td.delivery');
+		var totDelivery = 0;
+
+		$.each(tagDelivery, function(){
+
+			var delivery = $(this).text().replace(/,/g, '');
+
+			if(delivery != '무료배송'){				
+				totDelivery += parseInt(delivery);
+			}			
+
+			$('.info tr:nth-child(4) > td:nth-child(2)').text(totDelivery.toLocaleString());
+		});
+		
+		//point
+		var tagPoint = $('td.point');
+		var totPoint = 0;
+
+		$.each(tagPoint, function(){
+
+			var point = $(this).text().replace(/,/g, '');							
+			totPoint += parseInt(point);					
+
+			$('.info tr:nth-child(5) > td:nth-child(2)').text(totPoint.toLocaleString());
+		});
+		
+		//total sum
+		var tagTotal = $('td.total');
+		var totTotal = 0;
+
+		$.each(tagTotal, function(){
+
+			var total = $(this).text().replace(/,/g, '');							
+			totTotal += parseInt(total);					
+
+			$('.info tr:nth-child(6) > td:nth-child(2)').text(totTotal.toLocaleString());
+		});
+		
+		//checkbox all
+		$(function() {
+			var checkAll = $('input[name=all]');
+			checkAll.click(function() {
+				var productCheck = $('.product_check');
+				var tagCount 	 = $('.into tr:nth-child(1) > td:nth-child(2)');
+				var tagPrice 	 = $('.into tr:nth-child(2) > td:nth-child(2)');
+				var tagDiscount  = $('.into tr:nth-child(3) > td:nth-child(2)');
+				var tagDelivery  = $('.into tr:nth-child(4) > td:nth-child(2)');
+				var tagPoint 	 = $('.into tr:nth-child(5) > td:nth-child(2)');
+				var tagTotal 	 = $('.into tr:nth-child(6) > td:nth-child(2)');
+				
+				if($(this).is(':checked') == false){
+					//all unchecked
+					productCheck.attr('checked', false)
+					
+					//reset numbers
+					tagCount.text('0');
+					tagPrice.text('0');
+					tagDiscount.text('0');
+					tagDelivery.text('0');
+					tagPoint.text('0');
+					tagTotal.text('0');
+					
+				}else{
+					//all checked
+					productCheck.attr('checked', true)
+				}
+			});
+		});
+	})
+</script>
 <main>
    	<th:block th:include="@{_category.html}"/>
     <!-- 장바구니 -->
@@ -19,10 +129,11 @@
           <table>
             <thead>
               <tr>
-                <th><input type="checkbox" name="all"></th>
+                <th><input type="checkbox" name="all" checked></th>
                 <th>상품명</th>
                 <th>총수량</th>
                 <th>판매가</th>
+                <th>할인</th>
                 <th>포인트</th>
                 <th>배송비</th>
                 <th>소계</th>
@@ -32,22 +143,25 @@
               <tr class="empty">
                 <td colspan="7">장바구니에 상품이 없습니다.</td>
               </tr>
-              <tr>
-                <td><input type="checkbox" name=""></td>
+              <tr th:each="product:${products}">
+                <td><input type="checkbox" class="product_check" th:name="${product.code}" checked></td>
                 <td>
                   <article>
-                    <a href="#"><img src="../img/thumb-sample-t2.jpg" alt=""></a>
+                    <a href="#"><img th:src="@{/thumb/{code1}/{code2}/{img}(code1=${product.cate1}, code2=${product.cate2}, img=${product.thumb1})}" alt=""></a>
                     <div>
-                      <h2><a href="#">TH-블락체크 셔츠-그레이2 [면세]</a></h2>
-                      <p>SIZE:M / COLOR:블루 1개</p>
+                      <h2><a href="#">[[${product.name}]]</a></h2>
+                      <p></p>
                     </div>
                   </article>
                 </td>
-                <td>1</td>
-                <td>27,000</td>
-                <td>270</td>
-                <td>무료배송</td>
-                <td>27,000</td>
+				<td class="count">[[${product.count}]]</td>
+                <td class="price">[[${#numbers.formatInteger(product.price, 3, 'COMMA')}]]</td>
+                <td class="discount" th:if="${product.discount} > 0">[[${product.discount}]]%</td>
+                <td class="discount" th:unless="${product.discount} > 0">-</td>
+                <td class="point">[[${product.point}]]</td>
+                <td class="delivery" th:if="${product.delivery} == 0">무료배송</td>
+                <td class="delivery" th:unless="${product.delivery} == 0">[[${#numbers.formatInteger(product.delivery, 3, 'COMMA')}]]</td>
+                <td class="total">[[${#numbers.formatInteger(product.total, 3, 'COMMA')}]]</td>
               </tr>
             </tbody>
           </table>
