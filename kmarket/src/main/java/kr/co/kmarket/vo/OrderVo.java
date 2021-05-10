@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class OrderVo {
-	private int seq;
+	private int orderId;
 	private String uid;
 	private int code;
 	private String name;
@@ -24,4 +24,5 @@ public class OrderVo {
 	private int cate1;
 	private int cate2;
 	private String thumb1;
+	private int codes[];
 }

@@ -17,6 +17,7 @@ import com.google.gson.JsonObject;
 import kr.co.kmarket.service.ShopService;
 import kr.co.kmarket.vo.CartVo;
 import kr.co.kmarket.vo.MemberVo;
+import kr.co.kmarket.vo.OrderDetailVo;
 import kr.co.kmarket.vo.OrderVo;
 import kr.co.kmarket.vo.ProductVo;
 
@@ -103,22 +104,26 @@ public class ShopController {
 	@GetMapping("/shop/order")
 	public String order(HttpSession sess, Model model) {
 		MemberVo member = (MemberVo) sess.getAttribute("smember");
-		String uid = member.getUid();
+		// uid = member.getUid();
 		
-		List<OrderVo> orders = service.selectOrder(uid);
+		//List<OrderVo> orders = service.selectOrder(uid);
 		
-		model.addAttribute("orders", orders);
+		//model.addAttribute("orders", orders);
 		model.addAttribute("member", member);
 		return "/shop/order";
 	}
 	
 	@ResponseBody
 	@PostMapping("/shop/order")
-	public String order(int[] cartSeqs) {
-		int result = service.insertOrder(cartSeqs);
+	public String order(OrderVo vo) {
+		int orderId = service.insertOrder(vo);
+		
+		for(int code : vo.getCodes()) {
+			service.insertOrderDetail(orderId, code);
+		}
 		
 		JsonObject json = new JsonObject();
-		json.addProperty("result", result);
+		json.addProperty("result", orderId);
 		return new Gson().toJson(json);
 	}
 	
