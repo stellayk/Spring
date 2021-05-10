@@ -110,30 +110,61 @@
 		});
 	});
 	
-	//delete button
+	//delete items
 	$(function() {
 		$('input[name=del]').click(function() {
 			var checkedProducts = $('.product_check:checked');
-			var cartSeq = [];
+			var cartSeqs = [];
 			
 			checkedProducts.each(function(i, product) {
-				cartSeq.push(product.value);
+				cartSeqs.push(product.value);
 			});
 			
-			var params = {"cartSeqs":cartSeqs};
+			var params = {"cartSeqs" : cartSeqs};
 			
 			$.ajax({
-				url: 'kmarket/shop/cartRemove',
+				url: '/kmarket/shop/cartRemove',
 				type: 'get',
 				traditional: true,
 				data: params,
 				dataType: 'json',
 				success: function(data) {
-					alert(data)
+					// delete data and update the view
+					var inputCheck = $('input.product_check:checked');
+					inputCheck.parent().parent().remove();
+					
+					//check remaining items
+					aggregateProduct();
 				}
 			});
 		});
 	});
+	
+	//order
+	$(function() {
+		$('input[name=order]').click(function() {
+			var checkedProducts = $('.product_check:checked');
+			var cartSeqs = [];
+			
+			checkedProducts.each(function(i, product) {
+				cartSeqs.push(product.value);
+			});
+			
+			var params = {"cartSeqs" : cartSeqs};
+			
+			$.ajax({
+				url: '/kmarket/shop/order',
+				type: 'post',
+				traditional: true,
+				data: params,
+				dataType: 'json',
+				success: function(data) {
+					location:href="/kmarket/shop/order";
+				}
+			});
+		});
+	});
+	
 </script>
 <main>
    	<th:block th:include="@{_category.html}"/>
@@ -226,3 +257,4 @@
     </section>
 </main>
 <th:block th:include="@{_footer.html}"/>
+</html>
