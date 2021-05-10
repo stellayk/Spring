@@ -4,9 +4,9 @@
 > Developer Setting
 - Print Hello World http://18.220.30.100:8081/Ch01/
 ## Chapter 02
-> IoC Container
+> IoC Container on Java Application
 ## Chapter 03
-> AOP (Aspect Oriented Programming)
+> AOP (Aspect Oriented Programming) on Java Application
 ## Chapter 04
 > MVC Framework
 - http://18.220.30.100:8081/Ch04/
