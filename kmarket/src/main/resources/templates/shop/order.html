@@ -24,6 +24,8 @@
 		
 		//finish order
 		$('input[name=finalOrder]').click(function() {
+			
+			var orderId = $('input[name=orderId]').val();
 			var orderer = $('input[name=orderer]').val();
 			var hp 		= $('input[name=hp]').val();
 			var zip 	= $('input[name=zip]').val();
@@ -50,6 +52,7 @@
 				dataType: 'json',
 				success: function(data) {
 					alert('order completed!');
+					location.href="/kmarket/shop/order-complete?orderId="+data.orderId;
 				}
 			});
 		});

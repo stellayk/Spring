@@ -75,7 +75,7 @@
 	 </insert>
 	 
 	 <insert id="insertOrderDetail">
-	 	INSERT IGNORE INTO `km_product_order_detail` (`orderId`, `code`) VALUES (#{orderId}, #{code});
+	 	INSERT INTO `km_product_order_detail` (`orderId`, `code`) VALUES (#{orderId}, #{code});
 	 </insert>
 	 
 	<select id="selectOrder" resultType="kr.co.kmarket.vo.OrderVo">

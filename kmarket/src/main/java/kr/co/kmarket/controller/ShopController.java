@@ -137,8 +137,14 @@ public class ShopController {
 		return "/shop/order-complete";
 	}
 	
+	@ResponseBody
 	@PostMapping("/shop/order-complete")
 	public String orderComplete(OrderVo vo) {
-		return "/shop/order-complete";
+		service.updateOrder(vo);
+		
+		
+		JsonObject json = new JsonObject();
+		json.addProperty("orderId", vo.getOrderId());
+		return new Gson().toJson(json);
 	}
 }

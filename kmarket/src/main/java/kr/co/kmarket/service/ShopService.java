@@ -55,5 +55,9 @@ public class ShopService {
 	public List<OrderVo> selectOrder(String uid, int orderId) {
 		return dao.selectOrder(uid, orderId);
 	}
+	
+	public void updateOrder(OrderVo vo) {
+		dao.updateOrder(vo);
+	}
 
 }
