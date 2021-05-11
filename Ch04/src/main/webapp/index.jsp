@@ -8,8 +8,8 @@
 <body>
 	<h1>Index</h1>
 	
-	<a href="/ch04/hello">hello</a>
-	<a href="/ch04/welcome">welcome</a>
-	<a href="/ch04/greeting">greeting</a>
+	<a href="/Ch04/hello">hello</a>
+	<a href="/Ch04/welcome">welcome</a>
+	<a href="/Ch04/greeting">greeting</a>
 </body>
 </html>
