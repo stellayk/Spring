@@ -15,6 +15,9 @@
 - http://18.220.30.100:8081/Ch05/
 ## Chapter 06
 > Spring Boot
+- http://18.220.30.100:8081/Ch06/hello
+- http://18.220.30.100:8081/Ch06/greeting
+- http://18.220.30.100:8081/Ch06/welcome
 ## Chapter 07
 > Thymeleaf
 - http://18.220.30.100:8081/Ch07/
