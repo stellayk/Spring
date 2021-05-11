@@ -2,76 +2,58 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:include="@{_header.html}"/>
 <script>
-	//aggregateProduct();
-	
-	function aggregateProduct() {
-		//total sum
-		$(function() {
-			//var checkedProduct = $('.product_check:checked').parent().parent();
-			
-			//count item
-			var tagCount = $('.order > .count');
-			var totCount = 0;
-			
-			$.each(tagCount, function() {
-				var count = parseInt($(this).text());
-				totCount += count;
-			});
-			
-			$('.info tr:nth-child(1) > td:nth-child(2)').text(totCount);
-			
-			//price
-			var tagPrice = $('.order > .price');
-			var totPrice = 0;
-			
-			$.each(tagPrice, function() {
-				var price = parseInt($(this).text().replace(/,/g, ''));
-				totPrice += price;
-			});
-			
-			$('.info tr:nth-child(2) > td:nth-child(2)').text(totPrice.toLocaleString());
-			
-			//discounted price
-			var tagDiscount = $('.order > .discount');
-			var totDiscount = 0;
-			
-			$.each(tagDiscount, function() {
-				var discount = $(this).text().replace(/%/g, '');
+	$(function() {
+		//use point
+		$('input[name=pointBtn]').click(function() {
+			var applyPoint = Number($('input[name=point]').val());
+			if(applyPoint > 0) {
+				var currentPoint = Number($('.currentPoint').text().replace(/,/g, ''));
+				var finalTotal = Number($('.final').text().replace(/,/g, ''));
 				
-				if(discount != '-') {
-					var price = $(this).prev().text().replace(/,/g, '');
-					totDiscount += parseInt(price*discount/100);
+				currentPoint -= applyPoint;
+				finalTotal -= applyPoint;
+				
+				$('.currentPoint').text(currentPoint.toLocaleString());
+				$('.pointDiscount').text(applyPoint.toLocaleString());
+				$('.final').text(finalTotal.toLocaleString());
+				$('input[name=point]').val(0);
+			}else{
+				alert('적용할 포인트를 입력하세요.');
+			}
+		});
+		
+		//finish order
+		$('input[name=finalOrder]').click(function() {
+			var orderer = $('input[name=orderer]').val();
+			var hp 		= $('input[name=hp]').val();
+			var zip 	= $('input[name=zip]').val();
+			var addr1	= $('input[name=addr1]').val();
+			var addr2   = $('input[name=addr2]').val();
+			var payment = $('input[name=payment]').val();
+			var pointDiscount = $('.pointDiscount').text().replace(/,/g, '');
+			
+			var params = {
+				'orderId': orderId,
+				'orderer': orderer,
+				'hp': hp,
+				'zip': zip,
+				'addr1': addr1,
+				'addr2': addr2,
+				'payment': payment,
+				'pointDiscount': pointDiscount
+			};
+			
+			$.ajax({
+				url: '/kmarket/shop/order-complete',
+				type: 'post',
+				data: params,
+				dataType: 'json',
+				success: function(data) {
+					alert('order completed!');
 				}
 			});
-			
-			$('.info tr:nth-child(3) > td:nth-child(2)').text(totPrice.toLocaleString());
-			
-			//delivery fee
-			var tagDelivery = $('.order > .delivery');
-			var totDelivery = 0;
-
-			$.each(tagDelivery, function(){
-				var delivery = $(this).text().replace(/,/g, '');
-
-				if(delivery != '무료배송'){				
-					totDelivery += parseInt(delivery);
-				}			
-			});
-			
-			$('.info tr:nth-child(4) > td:nth-child(2)').text(totDelivery.toLocaleString());
-			
-			//total sum
-			var tagTotal = $('.order > .total');
-			var totTotal = 0;
-
-			$.each(tagTotal, function(){
-				var total = $(this).text().replace(/,/g, '');							
-				totTotal += parseInt(total);					
-			});
-			
-			$('.info tr:nth-child(6) > td:nth-child(2)').text(totTotal.toLocaleString());
 		});
-	} // aggregateProduct() end
+});
 </script>
 <main>
 	<th:block th:include="@{_category.html}"/>
@@ -104,7 +86,25 @@
                       <tr class="empty">
                         <td colspan="7">장바구니에 상품이 없습니다.</td>
                       </tr>
-                      
+                      <tr th:each="product:${products}">
+		                <td>
+		                  <article>
+		                    <a href="#"><img th:src="@{/thumb/{code1}/{code2}/{img}(code1=${product.cate1}, code2=${product.cate2}, img=${product.thumb1})}" alt=""></a>
+		                    <div>
+		                      <h2><a href="#">[[${product.pName}]]</a></h2>
+		                      <p></p>
+		                    </div>
+		                  </article>
+		                </td>
+						<td class="count">1</td>
+		                <td class="price">[[${#numbers.formatInteger(product.pPrice, 3, 'COMMA')}]]</td>
+		                <td class="discount" th:if="${product.pDiscount} > 0">[[${product.pDiscount}]]%</td>
+		                <td class="discount" th:unless="${product.pDiscount} > 0">-</td>
+		                <td class="point">[[${product.pPoint}]]</td>
+		                <td class="delivery" th:if="${product.pDelivery} == 0">무료배송</td>
+		                <td class="delivery" th:unless="${product.pDelivery} == 0">[[${#numbers.formatInteger(product.pDelivery, 3, 'COMMA')}]]</td>
+		                <td class="total">[[${#numbers.formatInteger(product.pTotal, 3, 'COMMA')}]]</td>
+		              </tr>
                     </tbody>
                   </table>                      
             </div>
@@ -148,12 +148,11 @@
 
                 <article class="discount">
                     <h1>할인정보</h1>
-
                     <div>
-                        <p>현재 포인트 : <span>[[${member.point}]]</span>점</p>
+                        <p>현재 포인트 : <span class="currentPoint">[[${member.point}]]</span>점</p>
                         <label>
                             <input type="text" name="point" value="0"/>점
-                            <input type="button" value="적용"/>
+                            <input type="button" name="pointBtn" value="적용"/>
                         </label>
                         <span>포인트 5,000점 이상이면 현금처럼 사용 가능합니다.</span>
                     </div>
@@ -197,34 +196,35 @@
 
                 <div class="info">
                     <h2>최종결제 정보</h2>
+                    <input type="hidden" name="orderId" th:value="${infoData.orderId}" />
                     <table border="0">
                       <tr>
                         <td>총</td>
-                        <td>0</td>
+                        <td>[[${infoData.count}]]</td>
                       </tr>
                       <tr>
                         <td>상품금액</td>
-                        <td>0</td>
+                        <td>[[${#numbers.formatInteger(infoData.price, 3, 'COMMA')}]]</td>
                       </tr>
                       <tr>
                         <td>할인금액</td>
-                        <td>0</td>
+                        <td>[[${#numbers.formatInteger(infoData.discount, 3, 'COMMA')}]]</td>
                       </tr>
                       <tr>
                         <td>배송비</td>
-                        <td>0</td>
+                        <td>[[${#numbers.formatInteger(infoData.delivery, 3, 'COMMA')}]]</td>
                       </tr>
                       <tr>
                         <td>포인트 할인</td>
-                        <td>0</td>
+                        <td class="pointDiscount">0</td>
                       </tr>
                       <tr>
                         <td>전체주문금액</td>
-                        <td>0</td>
+                        <td class="final">[[${#numbers.formatInteger(infoData.total, 3, 'COMMA')}]]</td>
                       </tr>
                       
                     </table>
-                    <input type="button" name="" value="결제하기">
+                    <input type="button" name="finalOrder" value="결제하기" />
         
                   </div>
             </section>                

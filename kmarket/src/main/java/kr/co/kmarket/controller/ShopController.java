@@ -102,33 +102,43 @@ public class ShopController {
 	}
 	
 	@GetMapping("/shop/order")
-	public String order(HttpSession sess, Model model) {
+	public String order(HttpSession sess, Model model, int orderId) {
 		MemberVo member = (MemberVo) sess.getAttribute("smember");
-		// uid = member.getUid();
+		String uid = member.getUid();
 		
-		//List<OrderVo> orders = service.selectOrder(uid);
+		List<OrderVo> products = service.selectOrder(uid, orderId);
 		
-		//model.addAttribute("orders", orders);
 		model.addAttribute("member", member);
+		model.addAttribute("products", products);
+		model.addAttribute("infoData", products.get(0));
 		return "/shop/order";
 	}
 	
 	@ResponseBody
 	@PostMapping("/shop/order")
 	public String order(OrderVo vo) {
-		int orderId = service.insertOrder(vo);
+		service.insertOrder(vo);
+		
+		int orderId = vo.getOrderId();
+		System.out.println("orderId :"+orderId);
+		
 		
 		for(int code : vo.getCodes()) {
 			service.insertOrderDetail(orderId, code);
 		}
 		
 		JsonObject json = new JsonObject();
-		json.addProperty("result", orderId);
+		json.addProperty("orderId", orderId);
 		return new Gson().toJson(json);
 	}
 	
 	@GetMapping("/shop/order-complete")
 	public String orderComplete() {
+		return "/shop/order-complete";
+	}
+	
+	@PostMapping("/shop/order-complete")
+	public String orderComplete(OrderVo vo) {
 		return "/shop/order-complete";
 	}
 }
