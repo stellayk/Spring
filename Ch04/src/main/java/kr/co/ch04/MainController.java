@@ -23,7 +23,7 @@ public class MainController {
 		return "welcome";
 	}
 	
-	@PostMapping("/greeting")
+	@GetMapping("/greeting")
 	public String greeting() {
 		return "greeting";
 	}
