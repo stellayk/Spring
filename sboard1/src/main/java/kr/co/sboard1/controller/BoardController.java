@@ -3,10 +3,7 @@ package kr.co.sboard1.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,7 +52,7 @@ public class BoardController {
 		String regip = req.getRemoteAddr();
 		vo.setRegip(regip);
 		
-		// spring-context.xml 파일업로드 설정 할 것
+		// spring-context.xml file upload setting
 		MultipartFile file = vo.getFname();
 		
 		if(file.isEmpty()) {
@@ -64,7 +61,7 @@ public class BoardController {
 			vo.setFile(1);
 		}
 		
-		// 글 insert한 후 글번호를 받아옴 
+		// get seq number after insert the post
 		int seq = service.insertArticle(vo);
 		
 		FileVo fvo = service.fileUpload(req, file, seq);
