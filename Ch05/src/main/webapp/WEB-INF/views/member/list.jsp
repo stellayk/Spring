@@ -21,12 +21,12 @@
 		</tr>
 		<c:forEach var="member" items="${members}">
 		<tr>
-			<td>${member.uid}></td>
-			<td>${member.name}></td>
-			<td>${member.hp}></td>
-			<td>${member.pos}></td>
-			<td>${member.dep}></td>
-			<td>${member.rdate}></td>
+			<td>${member.uid}</td>
+			<td>${member.name}</td>
+			<td>${member.hp}</td>
+			<td>${member.pos}</td>
+			<td>${member.dep}</td>
+			<td>${member.rdate}</td>
 			<td>
 				<a href="/Ch05/member/modify?uid=${member.uid}">Edit</a>
 				<a href="/Ch05/member/delete?uid=${member.uid}">Delete</a>
