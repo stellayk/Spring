@@ -7,6 +7,7 @@
 </head>
 <body>
 	<h3>Modify</h3>
+	<a href="/ch05">Back to list</a>
 	<form action="/ch05/user/modify" method="post">
 		<table border="1">
 			<tr>

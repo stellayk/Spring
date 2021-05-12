@@ -6,7 +6,8 @@
 <title>Register</title>
 </head>
 <body>
-	<h3>register</h3>
+	<h3>Register new user</h3>
+	<a href="/ch05">Back to list</a>
 	<form action="/ch05/user/register" method="post">
 		<table border="1">
 			<tr>

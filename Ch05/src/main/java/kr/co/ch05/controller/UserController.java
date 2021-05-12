@@ -48,4 +48,9 @@ public class UserController {
 		return "redirect:/user/list";
 	}
 	
+	@GetMapping("/user/delete")
+	public String delete(UserVo vo) {
+		service.deleteUser(vo);
+		return "redirect:/user/list";
+	}
 }

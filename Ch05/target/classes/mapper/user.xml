@@ -18,4 +18,8 @@
 		UPDATE `USER1` SET `name`=#{name}, `hp`=#{hp}, `age`=#{age} WHERE `uid`=#{uid};
 	</update>
 	
+	<delete id="DELETE_USER">
+		DELETE FROM `USER1` WHERE `uid`=#{uid};
+	</delete>
+	
 </mapper>

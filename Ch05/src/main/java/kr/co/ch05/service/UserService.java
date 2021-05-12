@@ -29,5 +29,7 @@ public class UserService {
 	public void updateUser(UserVo vo) {
 		dao.updateUser(vo);
 	}
-	public void deleteUser() {}
+	public void deleteUser(UserVo vo) {
+		dao.deleteUser(vo);
+	}
 }

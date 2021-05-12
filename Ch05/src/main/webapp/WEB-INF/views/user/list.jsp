@@ -3,11 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>List</title>
+	<meta charset="UTF-8">
+	<title>List</title>
 </head>
 <body>
 	<h3>User List</h3>
+	<a href="/ch05">Back to list</a>
 	<table border="1">
 		<tr>
 			<th>ID</th>
@@ -24,7 +25,7 @@
 				<td>${user.age}</td>
 				<td>
 					<a href="/ch05/user/modify?uid=${user.uid}">Edit</a>
-					<a href="#">Delete</a>
+					<a href="/ch05/user/delete?uid=${user.uid}">Delete</a>
 				</td>
 			</tr>
 		</c:forEach>
