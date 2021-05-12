@@ -7,8 +7,8 @@
 </head>
 <body>
 	<h3>Register new user</h3>
-	<a href="/ch05">Back to list</a>
-	<form action="/ch05/user/register" method="post">
+	<a href="/Ch05">Back to list</a>
+	<form action="/Ch05/user/register" method="post">
 		<table border="1">
 			<tr>
 				<td>ID</td>

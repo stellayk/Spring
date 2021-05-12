@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h3>User List</h3>
-	<a href="/ch05">Back to list</a>
+	<a href="/Ch05">Back to list</a>
 	<table border="1">
 		<tr>
 			<th>ID</th>
@@ -24,8 +24,8 @@
 				<td>${user.hp}</td>
 				<td>${user.age}</td>
 				<td>
-					<a href="/ch05/user/modify?uid=${user.uid}">Edit</a>
-					<a href="/ch05/user/delete?uid=${user.uid}">Delete</a>
+					<a href="/Ch05/user/modify?uid=${user.uid}">Edit</a>
+					<a href="/Ch05/user/delete?uid=${user.uid}">Delete</a>
 				</td>
 			</tr>
 		</c:forEach>
