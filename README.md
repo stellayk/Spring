@@ -32,5 +32,7 @@
 - http://18.220.30.100:8081/sboard2/
 ## member
 > Member CRUD program with Spring Boot, MyBatis
+- http://18.220.30.100:8081/member/
 ## kmarket
 > Kmarket Project with Spring Boot Project
+- http://18.220.30.100:8081/kmarket/
