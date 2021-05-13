@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>로그인</title>
+    <title>Login</title>
     <link rel="stylesheet" href="/sboard1/css/style.css"/>
     <script>
     	var result = ${result};

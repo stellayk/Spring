@@ -13,7 +13,7 @@
                 <caption>Terms of Service</caption>
                 <tr>
                     <td>
-                        <textarea readonly>${requestScope.vo.getTerms()}</textarea>
+                         <textarea readonly>${termsVo.terms}</textarea>
                         <p>
                             <label><input type="checkbox" name="chk1"/> I agree.</label>
                         </p>
@@ -24,7 +24,7 @@
                 <caption>Privacy Policy</caption>
                 <tr>
                     <td>
-                        <textarea readonly>${vo.privacy}</textarea>
+                        <textarea readonly>${termsVo.privacy}</textarea>
                         <p>
                             <label><input type="checkbox" name="chk2"/> I agree.</label>
                         </p>
