@@ -12,24 +12,24 @@
 </script>
 <main>
     <div id="member-login">
-        <img src="../img/member_txt_login.gif" alt="로그인" />
+        <img src="../img/member_txt_login.gif" alt="login" />
 		<form th:action="@{/member/login}" method="post">
 			<input type="hidden" name="result" th:value="${result}" />
 			<div>
 				<label>
-					<span><img src="../img/member_txt_id.gif" alt="아이디"></span> 
+					<span><img src="../img/member_txt_id.gif" alt="id"></span> 
 					<input type="text" name="uid" />
 				</label>
 				<label>
-					<span><img src="../img/member_txt_pass.gif" alt="비밀번호"></span> 
+					<span><img src="../img/member_txt_pass.gif" alt="pw"></span> 
 					<input type="password" name="pass" />
 				</label>
 			</div>
-			<input type="submit" value="로그인" />
+			<input type="submit" value="Login" />
 			<span>
-				<a href="#">아이디찾기</a>
-				<a href="#">비밀번호찾기</a>
-				<a href="#">회원가입</a>
+				<a href="#">Forgot your ID?</a>
+				<a href="#">Forgot your password?</a>
+				<a th:href="@{member/register.html}">Sign Up</a>
 			</span>
 		</form>
 		<img src="../img/member_certifi_logo.gif" alt="banner">

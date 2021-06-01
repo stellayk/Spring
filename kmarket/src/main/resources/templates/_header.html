@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">    
-    <title>케이마켓::대한민국 1등 온라인 쇼핑몰</title>
+    <title>KMARKET::NO1 ONLINE SHOPPING</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
@@ -45,17 +45,17 @@
         <header>
             <div class="top">
                 <div>
-                    <a th:if="${session['smember'] == null}" th:href="@{/member/login}">로그인</a>
-                    <a th:if="${session['smember'] != null}" th:href="@{/member/logout}">로그아웃</a>
-                    <a th:if="${session['smember']?.type == 2}" th:href="@{/admin}">관리자</a>
-                    <a th:if="${session['smember'] == null}" th:href="@{/member/signup}">회원가입</a>
-                    <a th:if="${session['smember'] != null}" th:href="@{/}">마이페이지</a>
-                    <a th:href="@{/shop/cart}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니</a>
+                    <a th:if="${session['smember'] == null}" th:href="@{/member/login}">LOGIN</a>
+                    <a th:if="${session['smember'] != null}" th:href="@{/member/logout}">LOGOUT</a>
+                    <a th:if="${session['smember']?.type == 2}" th:href="@{/admin}">ADMIN</a>
+                    <a th:if="${session['smember'] == null}" th:href="@{/member/signup}">SIGN UP</a>
+                    <a th:if="${session['smember'] != null}" th:href="@{/}">MY PAGE</a>
+                    <a th:href="@{/shop/cart}"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;CART</a>
                 </div>
             </div>
             <div class="logo">
                 <div>
-                    <a th:href="@{/}"><img th:src="@{/img/header_logo.png}" alt="로고"/></a>
+                    <a th:href="@{/}"><img th:src="@{/img/header_logo.png}" alt="logo"/></a>
                     <form action="#">
                         <input type="text" name="search"/>
                         <button><i class="fa fa-search"></i></button>
@@ -73,10 +73,10 @@
                         <li><a href="#">할인상품</a></li>
                     </ul>
                     <ul>
-                        <li><a href="#">쿠폰존</a></li>
-                        <li><a href="#">사용후기</a></li>
-                        <li><a href="#">개인결제</a></li>
-                        <li><a href="#">고객센터</a></li>
+                        <li><a href="#">Coupon Zone</a></li>
+                        <li><a href="#">Reviews</a></li>
+                        <li><a href="#">Payment</a></li>
+                        <li><a href="#">Customer Service</a></li>
                         <li><a href="#">FAQ</a></li>
                     </ul>
                 </div>

@@ -19,7 +19,7 @@ $(function(){
 		console.log('top :'+top);
 
 		if(top > 200 && !isRecommendOk){				
-			// 추천상품 데이터 요청하기
+			// request recommended products data
 			$.get('/kmarket/getRecommendProducts', function(result){
 
 				isRecommendOk = true;
@@ -47,7 +47,7 @@ $(function(){
 				});
 			});
 		}else if(top > 780 && !isNewOk){
-			// 최신상품 데이터 요청하기
+			// request new products data
 			$.get('/kmarket/getNewProducts', function(result){
 
 				isNewOk = true;
@@ -75,7 +75,7 @@ $(function(){
 				});
 			});
 		}else if(top > 1530 && !isDiscountOk){
-			// 할인상품 데이터 요청하기
+			// request discount products data
 			$.get('/kmarket/getDiscountProducts', function(result){
 
 				isDiscountOk = true;
@@ -112,7 +112,7 @@ $(function(){
 <main>
 	<th:block th:include="@{_category.html}"/>
     <section>
-        <!-- 슬라이더 영역 -->
+        <!-- slider -->
         <section class="slider">
             <ul>
                 <li><a href="#"><img src="./img/slider_item1.jpg" alt="item1"></a></li>
@@ -122,7 +122,7 @@ $(function(){
                 <li><a href="#"><img src="./img/slider_item5.jpg" alt="item5"></a></li>
             </ul>
         </section>
-        <!-- 히트상품 영역 -->
+        <!-- hit products -->
         <section class="hit">
             <h3><span>히트상품</span></h3>
             <article th:each="product:${hitProducts}">
@@ -144,17 +144,17 @@ $(function(){
                 </a>
             </article>
         </section>
-        <!-- 추천상품 영역 -->
+        <!-- recommended products -->
         <section class="recommend">
             <h3><span>추천상품</span></h3>
             <img th:src="@{/img/loading.gif}" align="" alt="loading">
         </section>
-        <!-- 최신상품 영역 -->
+        <!-- new products -->
         <section class="new">
             <h3><span>최신상품</span></h3>
             <img th:src="@{/img/loading.gif}" alt="loading">
         </section>
-        <!-- 할인상품 영역 -->
+        <!-- discounted products -->
         <section class="discount">
             <h3><span>할인상품</span></h3>
            	<img th:src="@{/img/loading.gif}" alt="loading">
