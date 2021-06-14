@@ -3,28 +3,28 @@
 <th:block th:include="@{_header.html}"/>
 <main>
    	<th:block th:include="@{_category.html}"/>
-    <!-- 상품목록 -->
+    <!-- product list -->
     <section id="list">
       
-      <!-- 제목, 페이지 네비게이션 -->
+      <!-- title, page navigation -->
       <nav>
-        <h1>[[${titles.tit2}]] 상품리스트</h1>
+        <h1>[[${titles.tit2}]] Product List</h1>
         <p>
           HOME > <span>[[${titles.tit1}]]</span> > <strong>[[${titles.tit2}]]</strong>
         </p>
       </nav>
 
-      <!-- 정렬방식 링크 -->
+      <!-- sorting link -->
       <ul class="sort">
-          <li><a th:href="@{/shop/list(cate1=${cate1}, cate2=${cate2}, sort=1)}">판매많은순</a></li>
-          <li><a th:href="@{/shop/list(cate1=${cate1}, cate2=${cate2}, sort=2)}">낮은가격순</a></li>
-          <li><a th:href="@{/shop/list(cate1=${cate1}, cate2=${cate2}, sort=3)}">높은가격순</a></li>
-          <li><a th:href="@{/shop/list(cate1=${cate1}, cate2=${cate2}, sort=4)}">평점높은순</a></li>
-          <li><a th:href="@{/shop/list(cate1=${cate1}, cate2=${cate2}, sort=5)}">후기많은순</a></li>
-          <li><a th:href="@{/shop/list(cate1=${cate1}, cate2=${cate2}, sort=6)}">최근등록순</a></li>
+          <li><a th:href="@{/shop/list(cate1=${cate1}, cate2=${cate2}, sort=1)}">Most Popular</a></li>
+          <li><a th:href="@{/shop/list(cate1=${cate1}, cate2=${cate2}, sort=2)}">Price: Lowest First</a></li>
+          <li><a th:href="@{/shop/list(cate1=${cate1}, cate2=${cate2}, sort=3)}">Price: Highest First</a></li>
+          <li><a th:href="@{/shop/list(cate1=${cate1}, cate2=${cate2}, sort=4)}">Top Rated</a></li>
+          <li><a th:href="@{/shop/list(cate1=${cate1}, cate2=${cate2}, sort=5)}">Customer Review</a></li>
+          <li><a th:href="@{/shop/list(cate1=${cate1}, cate2=${cate2}, sort=6)}">Newly Listed</a></li>
       </ul>
 
-      <!-- 상품목록 10개 -->
+      <!-- product list 10 -->
       <section>
         <article th:each="product:${products}">
           <ul>
@@ -45,26 +45,26 @@
                 <del>[[${#numbers.formatInteger(product.price, 3, 'COMMA')}]]</del>
                 <span>[[${product.discount}]]%</span>
               </div>
-              <span th:if="${product.delivery == 0}" class="freeshipping">무료배송</span>
-			  <span th:if="${product.delivery > 0}">배송비 [[${#numbers.formatInteger(product.delivery, 3, 'COMMA')}]]원</span>
+              <span th:if="${product.delivery == 0}" class="freeshipping">Free Shipping</span>
+			  <span th:if="${product.delivery > 0}">Shipping Fee [[${#numbers.formatInteger(product.delivery, 3, 'COMMA')}]]</span>
             </li>
             <li>
               <h4 class="seller"><i class="fas fa-home"></i>&nbsp;[[${product.company}]]</h4>
-              <h5 class="badge power">판매자등급</h5>
-              <h6 th:if="${product.score == 1}" class="rating star1">상품평</h6>
-              <h6 th:if="${product.score == 2}" class="rating star2">상품평</h6>
-              <h6 th:if="${product.score == 3}" class="rating star3">상품평</h6>
-              <h6 th:if="${product.score == 4}" class="rating star4">상품평</h6>
-              <h6 th:if="${product.score == 5}" class="rating star5">상품평</h6>
+              <h5 class="badge power">Seller Rating</h5>
+              <h6 th:if="${product.score == 1}" class="rating star1">Review</h6>
+              <h6 th:if="${product.score == 2}" class="rating star2">Review</h6>
+              <h6 th:if="${product.score == 3}" class="rating star3">Review</h6>
+              <h6 th:if="${product.score == 4}" class="rating star4">Review</h6>
+              <h6 th:if="${product.score == 5}" class="rating star5">Review</h6>
             </li>
           </ul>
         </article>
       </section>
 
-      <!-- 상품목록 페이지번호 -->
+      <!-- product list paging -->
       <div class="paging">
         <span class="prev">
-          <a href="#"><&nbsp;이전</a>
+          <a href="#"><&nbsp;Prev</a>
         </span>
         <span class="num">
           <a href="#" class="on">1</a>
@@ -76,7 +76,7 @@
           <a href="#">7</a>
         </span>
         <span class="next">
-          <a href="#">다음&nbsp;></a>
+          <a href="#">Next&nbsp;></a>
         </span>
       </div>
 

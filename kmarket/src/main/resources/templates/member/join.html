@@ -3,25 +3,25 @@
 <th:block th:include="@{member/_header_member.html}"/>
 <main>
     <div id="member-join">
-        <img src="../img/member_join_tit_welcome.gif" class="welcome" alt="Welcome to Kmarket." >
+        <img th:src="@{/img/member_join_tit_welcome.gif}" class="welcome" alt="Welcome to Kmarket." >
         <div class="type">
             <div class="normal">
-                <img src="../img/member_join_tit_normal.gif" alt="user sign up">
+                <img th:src="@{/img/member_join_tit_normal.gif}" alt="user sign up">
                 <div class="txt">
-                    <img src="../img/member_join_txt_normal.gif" alt="user">
-                    <a href="../member/signup.do?type=normal"><img src="../img/member_join_btn1.gif" alt="sign up"></a>
+                    <img th:src="@{/img/member_join_txt_normal.gif}" alt="user">
+                    <a th:href="@{/member/signup.do?type=normal}"><img th:src="@{/img/member_join_btn1.gif}" alt="sign up"></a>
                 </div>
             </div>
             <div class="seller">
-                <img src="../img/member_join_tit_seller.gif" alt="seller sign up">
+                <img th:src="@{/img/member_join_tit_seller.gif}" alt="seller sign up">
                 <div class="txt">
-                    <img src="../img/member_join_txt_seller.gif" alt="seller">
-                    <a href="../member/signup.do?type=seller"><img src="../img/member_join_btn2.gif" alt="sign up"></a>
+                    <img th:src="@{/img/member_join_txt_seller.gif}" alt="seller">
+                    <a th:href="@{/member/signup.do?type=seller}"><img th:src="@{/img/member_join_btn2.gif}" alt="sign up"></a>
                 </div>
             </div>
         </div>
-        <img src="../img/member_join_banner1.jpg" class="banner" alt="New Member">
-        <img src="../img/member_join_banner2.jpg" class="banner" alt="Business member">
+        <img th:src="@{/img/member_join_banner1.jpg}" class="banner" alt="New Member">
+        <img th:src="@{/img/member_join_banner2.jpg}" class="banner" alt="Business member">
     </div>
 </main>        
 <th:block th:include="@{member/_footer_member.html}"/>

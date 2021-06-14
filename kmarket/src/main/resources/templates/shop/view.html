@@ -85,8 +85,8 @@
                         </div>
                     </nav>
                     <nav>
-                        <span th:if="${productVo.delivery == 0}" class="delivery">무료배송</span>
-                      	<span th:if="${productVo.delivery > 0}" class="delivery">배송비 [[${#numbers.formatInteger(productVo.delivery, 3, 'COMMA')}]]원</span>
+                        <span th:if="${productVo.delivery == 0}" class="delivery">Free Shipping</span>
+                      	<span th:if="${productVo.delivery > 0}" class="delivery">Shipping Fee [[${#numbers.formatInteger(productVo.delivery, 3, 'COMMA')}]]Won</span>
                         <span class="arrival">모레(금) 7/8 도착예정</span>
                         <span class="desc">본 상품은 국내배송만 가능합니다.</span>
                     </nav>
@@ -209,7 +209,7 @@
             </article>
             <article class="review">
                 <nav>
-                    <h1>상품리뷰</h1>
+                    <h1>Customer Reviews</h1>
                 </nav>
                 <ul>
                     <li>
@@ -275,7 +275,7 @@
                 </ul>
                 <div class="paging">
                     <span class="prev">
-                        <a href="#"><&nbsp;이전</a>
+                        <a href="#"><&nbsp;Prev</a>
                     </span>
                     <span class="num">
                         <a href="#" class="on">1</a>
@@ -287,7 +287,7 @@
                         <a href="#">7</a>
                     </span>
                     <span class="next">
-                        <a href="#">다음&nbsp;></a>
+                        <a href="#">Next&nbsp;></a>
                     </span>
                 </div>
 
